@@ -3,6 +3,16 @@
 
 const episodes = [
   {
+    id: 10,
+    title: "Iron Man Teaches Innovation",
+    description: "Tony Stark shows that even when things break, you have the power to fix them, improve them, and build something even better.",
+    hero: "Iron Man",
+    skills: ["Problem Solving", "Creativity", "Responsibility"],
+    thumbnail: "images/iron-man-innovation.jpg",
+    videoId: "8s1x4u5p8z9",
+    duration: "6:15"
+  },
+  {
     id: 1,
     title: "Web of Teamwork",
     description: "Spider-Man and his heroic pals work together to rescue their friends from a tricky trap. Learn why teamwork makes every mission possible!",
