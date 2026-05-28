@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>River's Toy Room • Marvel Heroes Teach Real Skills</title>
+  <meta name="description" content="Join River in his magical toy room where Marvel action figures come alive to teach kids teamwork, creativity, problem-solving and more through fun educational adventures.">
+
+  <!-- Open Graph / Social sharing (update the URLs below after deploying to GitHub Pages) -->
+  <meta property="og:title" content="River's Toy Room • Marvel Heroes Teach Real Skills">
+  <meta property="og:description" content="A joyful, infinite-scroll gallery of educational adventures with Marvel toys. Teamwork, creativity, problem-solving &amp; more.">
+  <!-- IMPORTANT: Replace YOUR_USERNAME with your actual GitHub username after first deploy -->
+  <meta property="og:image" content="https://raw.githubusercontent.com/MojoMikeTaylor/RiverToyRoom/main/images/avengers-plan.jpg">
+  <meta property="og:url" content="https://MojoMikeTaylor.github.io/RiverToyRoom/">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦸‍♂️</text></svg>">
+</head>
+<body class="bg-[#0a0a0f] text-white overflow-x-hidden">
+  <!-- Header / Nav -->
+  <header class="sticky top-0 z-50 bg-[#0a0a0f]/95 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-x-3">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#FF2D55] via-[#FFD700] to-[#00F5FF] flex items-center justify-center text-3xl shadow-lg shadow-[#FF2D55]/30">
+            🦸
+          </div>
+          <div>
+            <h1 class="font-black text-3xl tracking-tighter">River's Toy Room</h1>
+            <p class="text-[10px] text-white/50 -mt-1 tracking-[2px]">MARVEL HEROES • REAL SKILLS</p>
+          </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+          <a href="#episodes" class="hover:text-[#00F5FF] transition-colors">Episodes</a>
+          <a href="#skills" class="hover:text-[#00F5FF] transition-colors">Skills</a>
+          <a href="#about" class="hover:text-[#00F5FF] transition-colors">About</a>
+        </nav>
+
+        <div class="flex items-center gap-x-3">
+          <!-- Fun CTA -->
+          <button onclick="scrollToGallery()"
+                  class="hidden sm:flex items-center gap-x-2 px-5 py-2.5 rounded-2xl bg-white text-black font-semibold text-sm hover:bg-[#FFD700] transition-all active:scale-[0.985]">
+            <span>Start Watching</span>
+          </button>
+
+          <!-- Mobile Menu -->
+          <button id="mobile-menu-btn"
+                  class="md:hidden w-10 h-10 flex items-center justify-center rounded-2xl border border-white/20 hover:bg-white/5"
+                  aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center gap-x-2 px-4 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+      <div class="w-2 h-2 bg-[#00FF85] rounded-full animate-pulse"></div>
+      <span class="text-xs font-semibold tracking-widest text-white/70">NEW EPISODE EVERY WEEK</span>
+    </div>
+
+    <h2 class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.92] mb-6">
+      Where Marvel toys<br>
+      <span class="bg-gradient-to-r from-[#FF2D55] via-[#FFD700] to-[#00F5FF] bg-clip-text text-transparent">teach super skills</span>
+    </h2>
+
+    <p class="max-w-xl mx-auto text-xl sm:text-2xl text-white/70 mb-10">
+      Join River on epic adventures with Spider-Man, Iron Man, Hulk &amp; friends.<br class="hidden sm:block">
+      Every episode teaches real-life superpowers like teamwork, creativity &amp; problem-solving.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <button onclick="scrollToGallery()"
+              class="group w-full sm:w-auto inline-flex items-center justify-center gap-x-3 px-9 py-4 rounded-3xl bg-[#FF2D55] hover:bg-[#ff4369] active:bg-[#e61c48] font-bold text-lg transition-all shadow-xl shadow-[#FF2D55]/40 hover:shadow-[#FF2D55]/60">
+        <span>Browse the Gallery</span>
+        <span class="text-xl group-active:translate-x-0.5 transition">→</span>
+      </button>
+      <button onclick="showContributeModal()"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-x-2 px-7 py-4 rounded-3xl border border-white/30 hover:bg-white/5 font-semibold transition">
+        <span>✨</span>
+        <span>Add Your Episode</span>
+      </button>
+    </div>
+
+    <div class="mt-12 flex justify-center gap-x-8 text-sm">
+      <div class="flex items-center gap-x-1.5 text-white/60">
+        <span class="font-mono font-bold text-[#FFD700]">48k</span>
+        <span>kids learning</span>
+      </div>
+      <div class="flex items-center gap-x-1.5 text-white/60">
+        <span class="font-mono font-bold text-[#00F5FF]">214</span>
+        <span>adventures</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills / Filter Bar -->
+  <section id="skills" class="sticky top-[79px] z-40 bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/10 py-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-x-3 mb-3">
+        <div class="text-xs uppercase tracking-[1.5px] font-bold text-white/50">Filter by Super Skill</div>
+        <button onclick="clearFilters()"
+                class="ml-auto text-xs font-medium px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition">
+          Clear all
+        </button>
+      </div>
+
+      <div id="skill-filters" class="flex flex-wrap gap-2">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Episodes Gallery -->
+  <section id="episodes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <h3 class="text-4xl font-black tracking-tighter">The Adventures</h3>
+        <p class="text-white/60 mt-1">Infinite scroll • Tap any card to watch</p>
+      </div>
+      <div id="episode-count"
+           class="hidden sm:block text-sm font-mono px-4 py-1.5 rounded-2xl bg-white/5 border border-white/10">
+        <!-- JS updates -->
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery"
+         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Episode cards injected by app.js -->
+    </div>
+
+    <!-- Infinite scroll status -->
+    <div id="scroll-status" class="mt-10 flex justify-center">
+      <div class="text-white/50 text-sm flex items-center gap-x-2">
+        <div class="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse"></div>
+        <span id="scroll-text">Scroll for more adventures...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Fun Facts -->
+  <section id="about" class="border-t border-white/10 bg-[#111114] py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="text-[#FFD700] text-sm font-bold tracking-[3px] mb-3">THE STORY BEHIND THE ROOM</div>
+      <h4 class="text-5xl font-black tracking-tighter mb-6">River's imagination<br>comes alive every day</h4>
+      <p class="max-w-2xl mx-auto text-lg text-white/70">
+        Every evening after school, 7-year-old River gathers his Marvel action figures in the middle of the floor.
+        Together they act out stories that teach him (and thousands of kids watching) how to be brave, kind, curious, and unstoppable.
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+          <div class="text-4xl mb-3">🕷️</div>
+          <div class="font-bold">Teamwork</div>
+          <div class="text-xs text-white/60 mt-1">Spider-Man style</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+          <div class="text-4xl mb-3">🛡️</div>
+          <div class="font-bold">Leadership</div>
+          <div class="text-xs text-white/60 mt-1">Captain America way</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+          <div class="text-4xl mb-3">🧠</div>
+          <div class="font-bold">Creativity</div>
+          <div class="text-xs text-white/60 mt-1">Iron Man inventions</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+          <div class="text-4xl mb-3">💪</div>
+          <div class="font-bold">Perseverance</div>
+          <div class="text-xs text-white/60 mt-1">Hulk strong feelings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribute CTA -->
+  <div class="max-w-3xl mx-auto px-6 py-12 text-center">
+    <div class="inline-block rounded-3xl border border-white/20 bg-white/5 p-8 md:p-10">
+      <div class="text-5xl mb-4">🚀</div>
+      <h5 class="font-black text-3xl tracking-tight mb-3">Have a cool idea for an episode?</h5>
+      <p class="text-white/70 mb-6 max-w-md mx-auto">Help us grow the Toy Room! Use the button below to generate a ready-to-paste episode snippet for the code.</p>
+      <button onclick="showContributeModal()"
+              class="px-8 py-3.5 font-bold rounded-2xl bg-gradient-to-r from-[#00F5FF] to-[#7B2CBF] text-black hover:brightness-110 transition">
+        ✨ OPEN EPISODE BUILDER
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-10 text-center text-sm text-white/50">
+    <div class="max-w-7xl mx-auto px-4">
+      Made with lots of imagination for curious kids everywhere.<br>
+      <span class="text-xs">Not affiliated with Marvel. All toys belong to their awesome owners.</span>
+      <div class="mt-4 text-[10px] tracking-widest">RIVER'S TOY ROOM © 2026 • INFINITE PLAY MODE ACTIVATED</div>
+    </div>
+  </footer>
+
+  <!-- VIDEO MODAL -->
+  <div id="video-modal" class="hidden fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4">
+    <div class="w-full max-w-5xl">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between mb-3 px-1">
+        <div>
+          <div id="modal-hero" class="text-xs uppercase tracking-widest text-[#00F5FF] font-bold"></div>
+          <h3 id="modal-title" class="font-black text-3xl tracking-tighter"></h3>
+        </div>
+        <button onclick="closeVideoModal()" 
+                class="w-11 h-11 flex items-center justify-center text-3xl text-white/70 hover:text-white rounded-2xl hover:bg-white/10 transition">×</button>
+      </div>
+
+      <!-- Video Embed -->
+      <div class="relative bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-video">
+        <iframe id="video-iframe"
+                class="w-full h-full"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Modal footer info -->
+      <div class="mt-5 px-1 flex flex-wrap items-center gap-3 text-sm">
+        <div id="modal-duration" class="font-mono px-3 py-1 rounded-full bg-white/10 text-xs"></div>
+        <div id="modal-skills" class="flex flex-wrap gap-2"></div>
+        <div class="flex-1"></div>
+        <button onclick="closeVideoModal()" 
+                class="px-5 py-2 text-xs font-bold rounded-2xl border border-white/30 hover:bg-white/5">CLOSE PLAYER</button>
+      </div>
+      <p id="modal-desc" class="mt-4 px-1 text-white/70 max-w-3xl"></p>
+    </div>
+  </div>
+
+  <!-- Contribute / Add Episode Modal -->
+  <div id="contribute-modal" class="hidden fixed inset-0 z-[80] bg-black/90 flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-[#111114] border border-white/20 rounded-3xl p-7">
+      <div class="flex justify-between items-start mb-6">
+        <div>
+          <div class="font-black text-3xl tracking-tight">Episode Builder</div>
+          <div class="text-white/60 text-sm">Create a new adventure • copy the JSON into app.js (replace placeholder thumbnail after)</div>
+        </div>
+        <button onclick="closeContributeModal()" class="text-4xl leading-none text-white/40 hover:text-white">×</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs text-white/60 block mb-1.5">EPISODE TITLE</label>
+          <input id="c-title" type="text" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-2xl px-4 py-3 text-sm outline-none" placeholder="Doctor Strange and the Color Portal" value="Thor Teaches Bravery">
+        </div>
+        <div>
+          <label class="text-xs text-white/60 block mb-1.5">HERO / TOY</label>
+          <input id="c-hero" type="text" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-2xl px-4 py-3 text-sm outline-none" placeholder="Thor" value="Thor">
+        </div>
+        <div class="md:col-span-2">
+          <label class="text-xs text-white/60 block mb-1.5">SHORT DESCRIPTION (1-2 sentences)</label>
+          <textarea id="c-desc" rows="2" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-3xl px-4 py-3 text-sm outline-none resize-y" placeholder="Thor shows that real strength comes from helping friends when they're scared...">Thor shows that real strength comes from helping friends when they're scared of the storm.</textarea>
+        </div>
+        <div>
+          <label class="text-xs text-white/60 block mb-1.5">YOUTUBE VIDEO ID</label>
+          <input id="c-video" type="text" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-2xl px-4 py-3 text-sm outline-none font-mono" placeholder="jTnz3ktqkVo" value="9OWAvCp6ie4">
+        </div>
+        <div>
+          <label class="text-xs text-white/60 block mb-1.5">DURATION</label>
+          <input id="c-duration" type="text" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-2xl px-4 py-3 text-sm outline-none" value="5:41">
+        </div>
+        <div class="md:col-span-2">
+          <label class="text-xs text-white/60 block mb-1.5">SKILLS (comma separated)</label>
+          <input id="c-skills" type="text" class="w-full bg-black border border-white/20 focus:border-[#00F5FF] rounded-2xl px-4 py-3 text-sm outline-none" placeholder="Teamwork, Perseverance, Leadership" value="Perseverance, Leadership">
+          <div class="text-[10px] text-white/40 mt-1">Choose from: Teamwork, Problem Solving, Creativity, Critical Thinking, Empathy, Perseverance, Leadership, Communication</div>
+        </div>
+      </div>
+
+      <div class="mt-7 flex gap-3">
+        <button onclick="generateEpisodeSnippet()"
+                class="flex-1 py-4 rounded-2xl bg-white text-black font-bold active:bg-[#FFD700]">GENERATE JSON SNIPPET</button>
+        <button onclick="closeContributeModal()" 
+                class="px-6 py-4 rounded-2xl border border-white/30 hover:bg-white/5 font-semibold">CANCEL</button>
+      </div>
+
+      <!-- Output area -->
+      <div id="snippet-output" class="hidden mt-6">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs uppercase text-[#00FF85] font-bold">Ready to copy — paste into episodes array in app.js</div>
+          <button onclick="copySnippet()" class="text-xs px-3 py-1 rounded-full bg-[#00FF85] text-black font-bold">COPY JSON</button>
+        </div>
+        <pre id="snippet-code" class="bg-black border border-white/20 text-[#00F5FF] p-4 rounded-2xl text-xs overflow-auto max-h-52 font-mono"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

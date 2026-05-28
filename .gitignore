@@ -1,0 +1,33 @@
+# River's Toy Room - Git Ignore
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build / temp
+node_modules/
+dist/
+build/
+*.log
+
+# Environment / secrets
+.env
+.env.local
+*.pem
+
+# Large media (if you add real videos later)
+*.mp4
+*.mov
+*.webm
+
+# OS generated
+*.bak
+*.tmp

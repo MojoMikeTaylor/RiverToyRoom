@@ -1,0 +1,206 @@
+/* River's Toy Room — Beautiful Mobile-First Styles */
+
+:root {
+  --accent-pink: #FF2D55;
+  --accent-cyan: #00F5FF;
+  --accent-gold: #FFD700;
+  --accent-purple: #7B2CBF;
+  --accent-green: #00FF85;
+}
+
+/* Base & smooth everything */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Fun card styles */
+.episode-card {
+  position: relative;
+  background: #111114;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.23, 1.0, 0.32, 1), 
+              box-shadow 0.2s cubic-bezier(0.23, 1.0, 0.32, 1),
+              border-color 0.2s ease;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+}
+
+.episode-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4),
+              0 8px 10px -6px rgb(0 0 0 / 0.4);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.episode-card:active {
+  transform: scale(0.985);
+}
+
+/* Thumbnail area */
+.episode-card .thumb-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1f;
+}
+
+.episode-card img {
+  transition: transform 0.6s cubic-bezier(0.23, 1.0, 0.32, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.episode-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Play overlay */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.55));
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 14px;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.episode-card:hover .play-overlay {
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.65));
+}
+
+.play-badge {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 5px 12px 4px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  letter-spacing: -.2px;
+}
+
+/* Skill badges */
+.skill-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: -.3px;
+  white-space: nowrap;
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Skill color variants - supports both legacy and new kebab-case classes */
+.skill-Teamwork,
+.skill-teamwork { background: #00F5FF; color: #000; }
+
+.skill-Problem\ Solving,
+.skill-problem-solving { background: #FF2D55; color: #fff; }
+
+.skill-Creativity,
+.skill-creativity { background: #FFD700; color: #000; }
+
+.skill-Critical\ Thinking,
+.skill-critical-thinking { background: #7B2CBF; color: #fff; }
+
+.skill-Empathy,
+.skill-empathy { background: #FF8C42; color: #000; }
+
+.skill-Perseverance,
+.skill-perseverance { background: #00FF85; color: #000; }
+
+.skill-Leadership,
+.skill-leadership { background: #3A86FF; color: #fff; }
+
+.skill-Communication,
+.skill-communication { background: #FF006E; color: #fff; }
+
+/* Filter pills */
+.filter-pill {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.filter-pill.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Modal improvements */
+#video-modal iframe {
+  background: #000;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .episode-card {
+    border-radius: 20px;
+  }
+}
+
+/* Subtle grid feel on gallery */
+#gallery {
+  position: relative;
+}
+
+/* Loading shimmer for future cards */
+.loading-card {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Nice focus states for accessibility */
+button:focus-visible,
+a:focus-visible,
+.episode-card:focus-visible {
+  outline: 2px solid #00F5FF;
+  outline-offset: 3px;
+}
+
+/* Fancy header logo glow */
+header .w-11 {
+  box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.15);
+}
+
+/* Scrollbar styling for filters on mobile */
+#skill-filters::-webkit-scrollbar {
+  height: 4px;
+}
+#skill-filters::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+}
