@@ -369,14 +369,29 @@ function openVideoModal(episode) {
   videoEl.src = '';
 
   if (episode.videoSrc) {
-    // Local AI-generated video (short clip)
+    // Local AI-generated video (short clip) — these include embedded sound/music/voice
     videoEl.classList.remove('hidden');
     videoEl.src = episode.videoSrc;
-    // Autoplay muted for browser policy compliance, user can unmute with controls
-    videoEl.muted = true;
+
+    // Prefer unmuted (clicking the gallery card is a user gesture; browsers often allow it).
+    // Only fall back to muted if autoplay is blocked.
+    videoEl.muted = false;
     videoEl.play().catch(() => {
-      // If autoplay blocked, the controls will still let the user start it
+      videoEl.muted = true;
+      videoEl.play().catch(() => {});
     });
+
+    // Add a small visual hint that this clip has audio
+    setTimeout(() => {
+      const desc = document.getElementById('modal-desc');
+      if (desc && !desc.dataset.soundHintAdded) {
+        const hint = document.createElement('span');
+        hint.className = 'ml-2 text-[10px] px-1.5 py-px rounded bg-[#00F5FF]/20 text-[#00F5FF]';
+        hint.textContent = '🔊 has sound';
+        desc.appendChild(hint);
+        desc.dataset.soundHintAdded = 'true';
+      }
+    }, 500);
   } else {
     // Classic YouTube embed
     iframe.classList.remove('hidden');
@@ -405,6 +420,14 @@ function closeVideoModal() {
   videoEl.pause();
   videoEl.src = '';
   videoEl.classList.add('hidden');
+
+  // Clean up any temporary sound hint we added
+  const desc = document.getElementById('modal-desc');
+  if (desc) {
+    const existingHint = desc.querySelector('span.bg-\\[\\#00F5FF\\]\\/20');
+    if (existingHint) existingHint.remove();
+    delete desc.dataset.soundHintAdded;
+  }
 
   modal.classList.remove('flex');
   modal.classList.add('hidden');
