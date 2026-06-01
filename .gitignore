@@ -23,10 +23,11 @@ build/
 .env.local
 *.pem
 
-# Large media (if you add real videos later)
-*.mp4
-*.mov
-*.webm
+# Large media - only ignore if someone drops huge raw footage outside videos/
+# We intentionally include short AI-generated clips in videos/ for the site
+# *.mp4
+# *.mov
+# *.webm
 
 # OS generated
 *.bak

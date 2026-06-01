@@ -9,8 +9,8 @@ const episodes = [
     hero: "Iron Man, Loki & Thanos",
     skills: ["Listening", "Quick Thinking", "Imagination"],
     thumbnail: "images/action-figures-dance-party.jpg",
-    videoId: "YOUR_YOUTUBE_ID_HERE",
-    duration: "5:22"
+    videoSrc: "videos/action-figures-dance-party.mp4",
+    duration: "0:12"
   },
   {
     id: 10,
@@ -335,9 +335,13 @@ function setupInfiniteScroll() {
 }
 
 // Open the beautiful video modal
+// Supports two types of content:
+// - YouTube videos (existing episodes): uses videoId
+// - Locally generated AI videos (new): uses videoSrc (e.g. "videos/xxx.mp4")
 function openVideoModal(episode) {
   const modal = document.getElementById('video-modal');
   const iframe = document.getElementById('video-iframe');
+  const videoEl = document.getElementById('video-element');
   const titleEl = document.getElementById('modal-title');
   const heroEl = document.getElementById('modal-hero');
   const descEl = document.getElementById('modal-desc');
@@ -357,8 +361,27 @@ function openVideoModal(episode) {
     return `<span class="skill-badge ${getSkillClass(skill)} text-xs px-3 py-px">${skill}</span>`;
   }).join('');
 
-  // YouTube embed — autoplay muted to comply with modern browser policies
-  iframe.src = `https://www.youtube.com/embed/${episode.videoId}?autoplay=1&mute=1&rel=0&modestbranding=1`;
+  // Reset both players first
+  iframe.classList.add('hidden');
+  videoEl.classList.add('hidden');
+  iframe.src = '';
+  videoEl.pause();
+  videoEl.src = '';
+
+  if (episode.videoSrc) {
+    // Local AI-generated video (short clip)
+    videoEl.classList.remove('hidden');
+    videoEl.src = episode.videoSrc;
+    // Autoplay muted for browser policy compliance, user can unmute with controls
+    videoEl.muted = true;
+    videoEl.play().catch(() => {
+      // If autoplay blocked, the controls will still let the user start it
+    });
+  } else {
+    // Classic YouTube embed
+    iframe.classList.remove('hidden');
+    iframe.src = `https://www.youtube.com/embed/${episode.videoId}?autoplay=1&mute=1&rel=0&modestbranding=1`;
+  }
 
   // Show modal
   modal.classList.remove('hidden');
@@ -368,12 +391,21 @@ function openVideoModal(episode) {
   document.addEventListener('keydown', handleModalEsc, { once: true });
 }
 
-// Close video modal + cleanup iframe (stops video)
+// Close video modal + cleanup both possible players
 function closeVideoModal() {
   const modal = document.getElementById('video-modal');
   const iframe = document.getElementById('video-iframe');
+  const videoEl = document.getElementById('video-element');
 
-  iframe.src = ''; // stop playback
+  // Stop YouTube
+  iframe.src = '';
+  iframe.classList.add('hidden');
+
+  // Stop local video
+  videoEl.pause();
+  videoEl.src = '';
+  videoEl.classList.add('hidden');
+
   modal.classList.remove('flex');
   modal.classList.add('hidden');
   currentVideoEpisode = null;
