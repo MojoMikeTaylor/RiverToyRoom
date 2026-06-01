@@ -3,6 +3,16 @@
 
 const episodes = [
   {
+    id: 11,
+    title: "Action Figures Dance Party – Gramma Kellee Surprise",
+    description: "Action figures (Iron Man, Loki, Thanos and friends) are wildly dancing to upbeat music like Pitbull “Fireball”. When they hear Gramma Kellee coming down the hallway they panic, freeze, and scramble back into their toy boxes. Once she leaves, one whispers “Ok Gramps, the coast is clear!” and the music starts again. Fun, chaotic, and wholesome kid-friendly scene.",
+    hero: "Iron Man, Loki & Thanos",
+    skills: ["Listening", "Quick Thinking", "Imagination"],
+    thumbnail: "images/action-figures-dance-party.jpg",
+    videoId: "YOUR_YOUTUBE_ID_HERE",
+    duration: "5:22"
+  },
+  {
     id: 10,
     title: "Iron Man Teaches Innovation",
     description: "Tony Stark shows that even when things break, you have the power to fix them, improve them, and build something even better.",
@@ -91,6 +101,16 @@ const episodes = [
     thumbnail: "images/avengers-plan.jpg",
     videoId: "lBdbttgfmRw",
     duration: "9:15"
+  },
+  {
+    id: 9,
+    title: "Iron Man vs Loki: Infinity Toy Showdown",
+    description: "Iron Man and Loki face off in an epic battle straight from their Avengers Infinity Saga collectible toy! Watch as tech meets trickery in this action-packed showdown that teaches strategy and thinking on your feet.",
+    hero: "Iron Man & Loki",
+    skills: ["Critical Thinking", "Problem Solving", "Perseverance"],
+    thumbnail: "images/ironman-vs-loki-toy.jpg",
+    videoId: "YOUR_YOUTUBE_ID_HERE",
+    duration: "10:30"
   }
 ];
 
