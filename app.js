@@ -3,6 +3,28 @@
 
 const episodes = [
   {
+    id: 15,
+    title: "Summer's Breakfast Party",
+    description: "The toys on the breakfast table wake up in a shower of golden sparkles and set out tiny pancakes and berries. The princesses twirl, the ponies prance, and everyone joins a little dance line that ends in one big group hug. A sweet, magical morning made just for Summer!",
+    hero: "Summer's Toy Friends",
+    skills: ["Friendship", "Sharing", "Kindness"],
+    thumbnail: "images/summers-breakfast-party.jpg",
+    // Finished local episode with music (single web-encoded file).
+    videoSrc: "videos/summers-breakfast-party.mp4",
+    duration: "0:30"
+  },
+  {
+    id: 14,
+    title: "Breakfast Brawl",
+    description: "The action figures on the restaurant table spot the last strip of bacon and a giant breakfast brawl breaks out, with punches, kicks, a tackle and a big leap off the cup! After an epic tug-of-war the bacon snaps in two, and everybody calls a truce and shares. Sharing beats fighting every time!",
+    hero: "The Breakfast Table Crew",
+    skills: ["Sharing", "Problem Solving", "Teamwork"],
+    thumbnail: "images/breakfast-brawl.jpg",
+    // Finished local episode (single web-encoded file).
+    videoSrc: "videos/breakfast-brawl.mp4",
+    duration: "0:30"
+  },
+  {
     id: 13,
     title: "Street Battle Dance-Off",
     description: "The heroes form a dance circle and battle it out with real breakdancing moves! Watch windmills, headspins, flares and freezes as Batman, Spider-Man, Hulk and the Guardians take turns showing off, then cheer each other on and finish with one giant group freeze. Everybody gets a turn and everybody wins!",
