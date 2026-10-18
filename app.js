@@ -3,6 +3,17 @@
 
 const episodes = [
   {
+    id: 13,
+    title: "Street Battle Dance-Off",
+    description: "The heroes form a dance circle and battle it out with real breakdancing moves! Watch windmills, headspins, flares and freezes as Batman, Spider-Man, Hulk and the Guardians take turns showing off, then cheer each other on and finish with one giant group freeze. Everybody gets a turn and everybody wins!",
+    hero: "Batman, Spider-Man, Hulk & the Guardians",
+    skills: ["Perseverance", "Confidence", "Teamwork"],
+    thumbnail: "images/street-battle-dance-off.jpg",
+    // Finished local episode with music (single web-encoded file).
+    videoSrc: "videos/street-battle-dance-off.mp4",
+    duration: "1:37"
+  },
+  {
     id: 12,
     title: "Heroes Dance Battle: Race to the Center",
     description: "Batman, Hulk, Spider-Man and the Guardians each make a big entrance, then race across the toy room to the block arena! Once they get there, a dance battle breaks out with rock, hip-hop, funk and electronic music, and everybody dances together in the grand finale. Original songs cheer River on the whole way!",
