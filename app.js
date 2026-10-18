@@ -3,6 +3,17 @@
 
 const episodes = [
   {
+    id: 12,
+    title: "Heroes Dance Battle: Race to the Center",
+    description: "Batman, Hulk, Spider-Man and the Guardians each make a big entrance, then race across the toy room to the block arena! Once they get there, a dance battle breaks out with rock, hip-hop, funk and electronic music, and everybody dances together in the grand finale. Original songs cheer River on the whole way!",
+    hero: "Batman, Hulk, Spider-Man & the Guardians",
+    skills: ["Teamwork", "Perseverance", "Creativity"],
+    thumbnail: "images/epic-heroes-dance-battle.jpg",
+    // Finished local episode with music (single web-encoded file).
+    videoSrc: "videos/epic-heroes-dance-battle.mp4",
+    duration: "4:15"
+  },
+  {
     id: 11,
     title: "Action Figures Dance Party  Gramma Kellee Surprise",
     description: "Action figures (Iron Man, Loki, Thanos and friends) are wildly dancing to upbeat music like Pitbull Fireball. When they hear Gramma Kellee coming down the hallway they panic, freeze, and scramble back into their toy boxes. Once she leaves, one whispers Ok Gramps, the coast is clear! and the music starts again. Fun, chaotic, and wholesome kid-friendly scene.",
