@@ -32,3 +32,10 @@ build/
 # OS generated
 *.bak
 *.tmp
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local patch backups
+_backup_*/

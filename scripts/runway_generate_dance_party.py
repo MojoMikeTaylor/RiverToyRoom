@@ -144,7 +144,8 @@ def main(dry_run: bool = True):
 
     print(f"\nAPI key detected: {api_key[:8]}...")
 
-    client = RunwayML(api_key=api_key, base_url="https://api.dev.runwayml.com")
+    client = RunwayML(api_key=api_key)
+    # Note: do not override to dev endpoint unless you have internal access; default is production API.
 
     print("\nStarting generation (this will use credits)...")
 
@@ -167,18 +168,35 @@ def main(dry_run: bool = True):
                 model="gen3a_turbo",
                 duration=5,   # Valid values: 5 or 10
             )
-            print(f"Task created: {task.id}")
-            print("Polling for completion (this can take 30-90 seconds)...")
+            task_id = getattr(task, "id", str(task))
+            print(f"Task created: {task_id}")
+            print("Waiting for completion (this can take 30-120 seconds)...")
 
-            # Proper polling
-            final_task = client.tasks.retrieve(task.id)
-            while final_task.status not in ("SUCCEEDED", "FAILED"):
-                print(f"  Status: {final_task.status} ...")
-                time.sleep(5)
-                final_task = client.tasks.retrieve(task.id)
+            # Prefer high-level wait if present on client (matches Sovereign runway_client), else manual poll + retrieve
+            final = None
+            try:
+                if hasattr(client, "tasks") and hasattr(client.tasks, "wait_for_task_output"):
+                    output = client.tasks.wait_for_task_output(task_id=task_id, polling_interval=3.0, max_wait_time=300)
+                    # output may be list of urls or dict; normalize below
+                    final = type("obj", (object,), {"status": "SUCCEEDED", "output": output})()
+                else:
+                    raise AttributeError("no wait helper")
+            except Exception:
+                # Manual fallback
+                final_task = client.tasks.retrieve(task_id)
+                while getattr(final_task, "status", "") not in ("SUCCEEDED", "FAILED"):
+                    print(f"  Status: {getattr(final_task, 'status', 'unknown')} ...")
+                    time.sleep(5)
+                    final_task = client.tasks.retrieve(task_id)
+                final = final_task
 
-            if final_task.status == "SUCCEEDED":
-                video_url = final_task.output[0] if final_task.output else None
+            if getattr(final, "status", "") == "SUCCEEDED":
+                out = getattr(final, "output", None)
+                video_url = None
+                if isinstance(out, list) and out:
+                    video_url = out[0] if isinstance(out[0], str) else getattr(out[0], "url", None) or (out[0].get("url") if isinstance(out[0], dict) else None)
+                elif isinstance(out, dict):
+                    video_url = out.get("url") or (out.get("videos") or [{}])[0].get("url")
                 stem = Path(label).stem if isinstance(source, Path) else f"url_{i}"
                 if video_url:
                     output_path = OUTPUT_DIR / f"{EPISODE_TITLE.replace(' ', '_')}_{i}_{stem}.mp4"
@@ -188,7 +206,8 @@ def main(dry_run: bool = True):
                 else:
                     print("  Task succeeded but no output URL found.")
             else:
-                print(f"  Task failed: {final_task.failure}")
+                fail = getattr(final, "failure", getattr(final, "status", "unknown"))
+                print(f"  Task failed: {fail}")
         except Exception as e:
             print(f"Error generating from {label}: {e}")
 

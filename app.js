@@ -1,11 +1,11 @@
-// River's Toy Room — Fun, Mobile-First Educational Marvel Toy Gallery
+﻿// River's Toy Room  Fun, Mobile-First Educational Marvel Toy Gallery
 // Easy to extend: simply add new objects to the episodes array below!
 
 const episodes = [
   {
     id: 11,
-    title: "Action Figures Dance Party – Gramma Kellee Surprise",
-    description: "Action figures (Iron Man, Loki, Thanos and friends) are wildly dancing to upbeat music like Pitbull “Fireball”. When they hear Gramma Kellee coming down the hallway they panic, freeze, and scramble back into their toy boxes. Once she leaves, one whispers “Ok Gramps, the coast is clear!” and the music starts again. Fun, chaotic, and wholesome kid-friendly scene.",
+    title: "Action Figures Dance Party  Gramma Kellee Surprise",
+    description: "Action figures (Iron Man, Loki, Thanos and friends) are wildly dancing to upbeat music like Pitbull Fireball. When they hear Gramma Kellee coming down the hallway they panic, freeze, and scramble back into their toy boxes. Once she leaves, one whispers Ok Gramps, the coast is clear! and the music starts again. Fun, chaotic, and wholesome kid-friendly scene.",
     hero: "Iron Man, Loki & Thanos",
     skills: ["Listening", "Quick Thinking", "Imagination"],
     thumbnail: "images/action-figures-dance-party.jpg",
@@ -45,7 +45,7 @@ const episodes = [
   {
     id: 3,
     title: "Hulk Learns Calm Power",
-    description: "The big green guy teaches that strong feelings are okay — it's how we use them that matters. A story about emotional superpowers.",
+    description: "The big green guy teaches that strong feelings are okay  it's how we use them that matters. A story about emotional superpowers.",
     hero: "Hulk",
     skills: ["Empathy", "Perseverance"],
     thumbnail: "images/hulk-calm.jpg",
@@ -110,6 +110,18 @@ const episodes = [
     skills: ["Critical Thinking", "Problem Solving", "Perseverance"],
     thumbnail: "images/ironman-vs-loki-toy.jpg",
     videoId: "YOUR_YOUTUBE_ID_HERE",
+    // Local clips play first (videoSrc wins over videoId). Clips auto-advance in story order.
+    videoSrc: "videos/ironman-loki-hook.mp4",
+    clips: [
+      "videos/ironman-loki-hook.mp4",
+      "videos/ironman-loki-rivalry.mp4",
+      "videos/ironman-loki-battle-2.mp4",
+      "videos/ironman-loki-fail.mp4",
+      "videos/ironman-loki-closeup.mp4",
+      "videos/ironman-loki-teamup.mp4",
+      "videos/ironman-loki-toy-demo.mp4",
+      "videos/ironman-loki-resolution.mp4"
+    ],
     duration: "10:30"
   }
 ];
@@ -128,7 +140,7 @@ let displayedCount = 6; // Start with 6 for nice infinite feel
 let filteredEpisodes = [...episodes];
 let currentVideoEpisode = null;
 
-// (Tailwind is loaded via CDN in index.html — no runtime config needed)
+// (Tailwind is loaded via CDN in index.html  no runtime config needed)
 
 // Render skill filter pills
 function renderSkillFilters() {
@@ -205,12 +217,12 @@ function createEpisodeCard(episode) {
     <div class="thumb-wrap aspect-video relative">
       <img 
         src="${episode.thumbnail}" 
-        alt="${episode.title} — ${episode.hero} educational episode thumbnail"
+        alt="${episode.title}  ${episode.hero} educational episode thumbnail"
         loading="lazy"
       >
       <div class="play-overlay">
         <div class="play-badge">
-          <span>▶</span>
+          <span></span>
           <span>WATCH</span>
         </div>
       </div>
@@ -283,7 +295,7 @@ function updateScrollStatus() {
   if (displayedCount >= filteredEpisodes.length) {
     statusEl.innerHTML = `
       <div class="px-5 py-2 text-xs rounded-3xl bg-white/5 border border-white/10 text-white/60">
-        🌟 That's all for now! New episodes drop every week.
+         That's all for now! New episodes drop every week.
       </div>
     `;
   } else {
@@ -366,10 +378,11 @@ function openVideoModal(episode) {
   videoEl.classList.add('hidden');
   iframe.src = '';
   videoEl.pause();
+  videoEl.onended = null;
   videoEl.src = '';
 
   if (episode.videoSrc) {
-    // Local AI-generated video (short clip) — these include embedded sound/music/voice
+    // Local AI-generated video (short clip)  these include embedded sound/music/voice
     videoEl.classList.remove('hidden');
     videoEl.src = episode.videoSrc;
 
@@ -381,13 +394,27 @@ function openVideoModal(episode) {
       videoEl.play().catch(() => {});
     });
 
+    // Optional multi-clip playlist: when one clip ends, play the next one.
+    if (Array.isArray(episode.clips) && episode.clips.length > 1) {
+      let clipIndex = Math.max(0, episode.clips.indexOf(episode.videoSrc));
+      videoEl.onended = () => {
+        clipIndex++;
+        if (clipIndex < episode.clips.length) {
+          videoEl.src = episode.clips[clipIndex];
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.onended = null;
+        }
+      };
+    }
+
     // Add a small visual hint that this clip has audio
     setTimeout(() => {
       const desc = document.getElementById('modal-desc');
       if (desc && !desc.dataset.soundHintAdded) {
         const hint = document.createElement('span');
         hint.className = 'ml-2 text-[10px] px-1.5 py-px rounded bg-[#00F5FF]/20 text-[#00F5FF]';
-        hint.textContent = '🔊 has sound';
+        hint.textContent = ' has sound';
         desc.appendChild(hint);
         desc.dataset.soundHintAdded = 'true';
       }
@@ -418,6 +445,7 @@ function closeVideoModal() {
 
   // Stop local video
   videoEl.pause();
+  videoEl.onended = null;
   videoEl.src = '';
   videoEl.classList.add('hidden');
 
@@ -495,7 +523,7 @@ function generateEpisodeSnippet() {
     description: desc,
     hero,
     skills,
-    thumbnail: "images/avengers-plan.jpg", // ← Replace with a real custom thumbnail for this episode
+    thumbnail: "images/avengers-plan.jpg", //  Replace with a real custom thumbnail for this episode
     videoId,
     duration
   };
@@ -551,16 +579,16 @@ function setupMobileMenu() {
     nav.innerHTML = `
       <div class="flex justify-between items-center mb-8">
         <div class="flex items-center gap-x-3">
-          <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#FF2D55] to-[#00F5FF] flex items-center justify-center text-2xl">🦸</div>
+          <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#FF2D55] to-[#00F5FF] flex items-center justify-center text-2xl"></div>
           <span class="font-black text-2xl">River's Toy Room</span>
         </div>
-        <button class="text-4xl text-white/70">×</button>
+        <button class="text-4xl text-white/70"></button>
       </div>
       <div class="flex flex-col text-2xl gap-y-5 font-semibold">
         <a href="#episodes" class="py-2">Episodes</a>
         <a href="#skills" class="py-2">Skills</a>
         <a href="#about" class="py-2">About the Room</a>
-        <button onclick="showContributeModal(); this.closest('.fixed').remove()" class="mt-4 text-left text-[#00F5FF]">✨ Add New Episode</button>
+        <button onclick="showContributeModal(); this.closest('.fixed').remove()" class="mt-4 text-left text-[#00F5FF]"> Add New Episode</button>
       </div>
       <div class="mt-auto text-xs text-white/40">Tap anywhere outside to close</div>
     `;
@@ -689,6 +717,12 @@ function init() {
 // Kick everything off
 window.addEventListener('DOMContentLoaded', init);
 
+// Keep the hero "episodes" stat in sync with the real episode count
+window.addEventListener('DOMContentLoaded', () => {
+  const epStat = document.getElementById('stat-episodes');
+  if (epStat) epStat.textContent = String(episodes.length);
+});
+
 // Expose helpful globals for easy future customization (in console or scripts)
 window.RIVERS_TOY_ROOM = {
   episodes,
@@ -709,3 +743,4 @@ window.RIVERS_TOY_ROOM = {
     renderSkillFilters();
   }
 };
+
