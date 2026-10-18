@@ -1,4 +1,4 @@
-﻿// River's Toy Room  Fun, Mobile-First Educational Marvel Toy Gallery
+// River's Toy Room  Fun, Mobile-First Educational Marvel Toy Gallery
 // Easy to extend: simply add new objects to the episodes array below!
 
 const episodes = [
@@ -122,7 +122,7 @@ const episodes = [
       "videos/ironman-loki-toy-demo.mp4",
       "videos/ironman-loki-resolution.mp4"
     ],
-    duration: "10:30"
+    duration: "1:22"
   }
 ];
 
