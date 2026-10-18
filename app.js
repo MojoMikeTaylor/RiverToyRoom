@@ -24,104 +24,13 @@ const episodes = [
     duration: "0:12"
   },
   {
-    id: 10,
-    title: "Iron Man Teaches Innovation",
-    description: "Tony Stark shows that even when things break, you have the power to fix them, improve them, and build something even better.",
-    hero: "Iron Man",
-    skills: ["Problem Solving", "Creativity", "Responsibility"],
-    thumbnail: "images/iron-man-innovation.jpg",
-    videoId: "8s1x4u5p8z9",
-    duration: "6:15"
-  },
-  {
-    id: 1,
-    title: "Web of Teamwork",
-    description: "Spider-Man and his heroic pals work together to rescue their friends from a tricky trap. Learn why teamwork makes every mission possible!",
-    hero: "Spider-Man",
-    skills: ["Teamwork", "Problem Solving"],
-    thumbnail: "images/spidey-team.jpg",
-    videoId: "jTnz3ktqkVo",
-    duration: "5:14"
-  },
-  {
-    id: 2,
-    title: "Iron Man's Invention Lab",
-    description: "Tony Stark's armor inspires kids to invent wild gadgets! Explore creativity and the joy of building anything you can imagine.",
-    hero: "Iron Man",
-    skills: ["Creativity", "Critical Thinking"],
-    thumbnail: "images/ironman-invent.jpg",
-    videoId: "rbGvDcRQeZ0",
-    duration: "7:22"
-  },
-  {
-    id: 3,
-    title: "Hulk Learns Calm Power",
-    description: "The big green guy teaches that strong feelings are okay  it's how we use them that matters. A story about emotional superpowers.",
-    hero: "Hulk",
-    skills: ["Empathy", "Perseverance"],
-    thumbnail: "images/hulk-calm.jpg",
-    videoId: "CcxSEqHR-jU",
-    duration: "6:45"
-  },
-  {
-    id: 4,
-    title: "Captain America's Shield Circle",
-    description: "Cap shows how passing the shield fairly builds trust and friendship. Great lessons in leadership and sharing with your whole team.",
-    hero: "Captain America",
-    skills: ["Leadership", "Teamwork"],
-    thumbnail: "images/cap-shield.jpg",
-    videoId: "o98-4q5DPY0",
-    duration: "4:58"
-  },
-  {
-    id: 5,
-    title: "Black Panther's Wakanda Wisdom",
-    description: "T'Challa explores clever inventions from Wakanda. Discover problem-solving through science, nature, and bold ideas.",
-    hero: "Black Panther",
-    skills: ["Problem Solving", "Creativity"],
-    thumbnail: "images/blackpanther-wakanda.jpg",
-    videoId: "9OWAvCp6ie4",
-    duration: "8:10"
-  },
-  {
-    id: 6,
-    title: "Doctor Strange's Magic of Mistakes",
-    description: "Even the Sorcerer Supreme gets spells wrong sometimes! Learn that mistakes are just portals to better learning and new ideas.",
-    hero: "Doctor Strange",
-    skills: ["Perseverance", "Critical Thinking"],
-    thumbnail: "images/strange-magic.jpg",
-    videoId: "J9EpClrYA5c",
-    duration: "5:33"
-  },
-  {
-    id: 7,
-    title: "Guardians' Galaxy Groove",
-    description: "The ragtag team of space heroes teach that every voice matters in a crew. A cosmic masterclass in communication and joyful teamwork.",
-    hero: "Guardians of the Galaxy",
-    skills: ["Communication", "Teamwork"],
-    thumbnail: "images/guardians-groove.jpg",
-    videoId: "z29loHu-lGo",
-    duration: "6:07"
-  },
-  {
-    id: 8,
-    title: "Avengers Assemble: The Big Plan",
-    description: "When the world needs heroes, they plan together. See how listening and combining powers creates unstoppable teamwork and friendship.",
-    hero: "The Avengers",
-    skills: ["Leadership", "Problem Solving"],
-    thumbnail: "images/avengers-plan.jpg",
-    videoId: "lBdbttgfmRw",
-    duration: "9:15"
-  },
-  {
     id: 9,
     title: "Iron Man vs Loki: Infinity Toy Showdown",
     description: "Iron Man and Loki face off in an epic battle straight from their Avengers Infinity Saga collectible toy! Watch as tech meets trickery in this action-packed showdown that teaches strategy and thinking on your feet.",
     hero: "Iron Man & Loki",
     skills: ["Critical Thinking", "Problem Solving", "Perseverance"],
     thumbnail: "images/ironman-vs-loki-toy.jpg",
-    videoId: "YOUR_YOUTUBE_ID_HERE",
-    // Local clips play first (videoSrc wins over videoId). Clips auto-advance in story order.
+    // Local clips play in story order (auto-advance).
     videoSrc: "videos/ironman-loki-hook.mp4",
     clips: [
       "videos/ironman-loki-hook.mp4",
@@ -516,7 +425,7 @@ function generateEpisodeSnippet() {
   const title = document.getElementById('c-title').value.trim() || "Untitled Adventure";
   const hero = document.getElementById('c-hero').value.trim() || "Marvel Hero";
   const desc = document.getElementById('c-desc').value.trim() || "An amazing learning journey with toys.";
-  const videoId = document.getElementById('c-video').value.trim() || "jTnz3ktqkVo";
+  const videoId = document.getElementById('c-video').value.trim() || "YOUR_YOUTUBE_ID_HERE";
   const duration = document.getElementById('c-duration').value.trim() || "4:20";
   const skillsRaw = document.getElementById('c-skills').value.trim();
 
