@@ -3,6 +3,17 @@
 
 const episodes = [
   {
+    id: 16,
+    title: "Foote Creek Chaos",
+    description: "The goats crash the toy party out at Foote Creek!",
+    hero: "The Mandalorian, Hulk Hogan & the Foote Creek Goats",
+    skills: ["Teamwork", "Being brave"],
+    thumbnail: "images/foote-chaos.jpg",
+    // Finished local episode with music (single web-encoded file).
+    videoSrc: "videos/foote-chaos.mp4",
+    duration: "0:30"
+  },
+  {
     id: 15,
     title: "Summer's Breakfast Party",
     description: "The toys on the breakfast table wake up in a shower of golden sparkles and set out tiny pancakes and berries. The princesses twirl, the ponies prance, and everyone joins a little dance line that ends in one big group hug. A sweet, magical morning made just for Summer!",
